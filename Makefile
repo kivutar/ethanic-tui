@@ -18,7 +18,6 @@ run:
 	./$(BINARY_NAME)
 dep:
 	dep ensure
-	dep prune
 
 # courtesy of https://medium.com/@jgautheron/quality-pipeline-for-go-projects-497e34d6567
 lint:

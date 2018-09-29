@@ -14,5 +14,6 @@ func main() {
 		fmt.Printf("etui v0.0.1")
 	} else {
 		fmt.Printf("work-in-progress")
+		app()
 	}
 }
