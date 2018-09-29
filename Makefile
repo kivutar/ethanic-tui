@@ -19,3 +19,13 @@ run:
 dep:
 	dep ensure
 	dep prune
+
+# courtesy of https://medium.com/@jgautheron/quality-pipeline-for-go-projects-497e34d6567
+lint:
+	@echo "gometalinter"
+	@! gometalinter ./... | \
+	grep -vE '(Godeps|vendor)'
+	@echo "gofmt (simplify)"
+	@! gofmt -s -d -l . 2>&1 | grep -vE '^\.git/'
+	@echo "goimports"
+	@! goimports -l . | grep -vF 'No Exceptions'
