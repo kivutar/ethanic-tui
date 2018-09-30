@@ -19,12 +19,10 @@ run:
 dep:
 	dep ensure
 
-# courtesy of https://medium.com/@jgautheron/quality-pipeline-for-go-projects-497e34d6567
 lint:
 	@echo "gometalinter"
-	@! gometalinter ./... | \
-	grep -vE '(Godeps|vendor)'
+	@gometalinter --vendor ./...
 	@echo "gofmt (simplify)"
-	@! gofmt -s -d -l . 2>&1 | grep -vE '^\.git/'
+	@! gofmt -s -l . 2>&1 | grep -v vendor
 	@echo "goimports"
-	@! goimports -l . | grep -vF 'No Exceptions'
+	@! goimports -l . | grep -v vendor
