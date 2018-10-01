@@ -31,4 +31,4 @@
 
 [[constraint]]
   branch = "master"
-  name = "github.com/nsf/termbox-go"
+  name = "github.com/jroimartin/gocui"
