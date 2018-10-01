@@ -1,0 +1,26 @@
+branches:
+  only:
+    - master
+
+language: go
+
+go:
+  - "1.9"
+
+os:
+  - linux
+  - osx
+
+before_script:
+  - GO_FILES=$(find . -iname '*.go' -type f | grep -v /vendor/)
+  - go get github.com/golang/lint/golint
+  - go get honnef.co/go/tools/cmd/megacheck
+  - go get github.com/fzipp/gocyclo
+
+script:
+  - go get -t -v ./...
+  - go test -v -race ./...
+  - go vet ./...
+  - megacheck ./...
+  - gocyclo -over 19 $GO_FILES
+  - golint -set_exit_status $(go list ./...)
